@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Login - SecureLogin{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Log In</h1>
+  <form method="POST" action="{{ url_for('login') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" value="{{ username }}" required autofocus>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit" class="btn-primary">Log In</button>
+  </form>
+  <p class="muted">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+</div>
+{% endblock %}
