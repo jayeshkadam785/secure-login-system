@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Set Up 2FA - SecureLogin{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Set Up Two-Factor Authentication</h1>
+  <p class="muted">Scan this QR code with Google Authenticator, Authy, or any TOTP app.</p>
+  <img class="qr-img" src="data:image/png;base64,{{ qr_base64 }}" alt="2FA QR Code">
+  <p class="muted">Or enter this key manually: <code>{{ secret }}</code></p>
+
+  <form method="POST" action="{{ url_for('setup_2fa') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <label for="otp_code">Enter the 6-digit code to confirm</label>
+    <input type="text" id="otp_code" name="otp_code" maxlength="6" pattern="[0-9]{6}" placeholder="000000" required autofocus>
+    <button type="submit" class="btn-primary">Enable 2FA</button>
+  </form>
+  <p class="muted"><a href="{{ url_for('dashboard') }}">Cancel and go back</a></p>
+</div>
+{% endblock %}

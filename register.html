@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Register - SecureLogin{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Create Account</h1>
+  <form method="POST" action="{{ url_for('register') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" value="{{ username }}" placeholder="3-20 chars, letters/numbers/_" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="{{ email }}" placeholder="you@example.com" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Min 8 chars, upper+lower+digit+symbol" required>
+
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" name="confirm_password" required>
+
+    <button type="submit" class="btn-primary">Register</button>
+  </form>
+  <p class="muted">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+</div>
+{% endblock %}
