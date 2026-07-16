@@ -1,0 +1,8 @@
+Flask
+bcrypt
+psycopg2-binary
+python-dotenv
+Flask-Login
+pyotp
+qrcode
+Pillow
