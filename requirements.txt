@@ -1,5 +1,0 @@
-Flask
-bcrypt
-psycopg2-binary
-python-dotenv
-Flask-Login
