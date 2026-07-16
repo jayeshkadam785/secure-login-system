@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - SecureLogin{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Welcome, {{ user.username }} &#128075;</h1>
+  <table class="info-table">
+    <tr><td>Email</td><td>{{ user.email }}</td></tr>
+    <tr><td>Account created</td><td>{{ user.created_at.strftime('%Y-%m-%d') }}</td></tr>
+    <tr><td>2FA status</td>
+      <td>
+        {% if user.is_2fa_enabled %}
+          <span class="badge badge-on">Enabled</span>
+        {% else %}
+          <span class="badge badge-off">Disabled</span>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+
+  {% if user.is_2fa_enabled %}
+    <form method="POST" action="{{ url_for('disable_2fa') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <button type="submit" class="btn-danger">Disable 2FA</button>
+    </form>
+  {% else %}
+    <a href="{{ url_for('setup_2fa') }}" class="btn-primary btn-link">Enable 2FA (Recommended)</a>
+  {% endif %}
+</div>
+{% endblock %}
