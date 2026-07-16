@@ -1,0 +1,7 @@
+Flask
+Flask-WTF
+bcrypt
+pyotp
+qrcode
+Pillow
+psycopg2-binary
